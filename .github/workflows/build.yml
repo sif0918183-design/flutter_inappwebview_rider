@@ -1,0 +1,32 @@
+name: Build Tirhal Driver APK
+
+on:
+  push:
+    branches: [ main, master ] # سيعمل عند الرفع على أي من الفرعين
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.10.0' # يمكنك تغييرها لأي إصدار مستقر
+          channel: 'stable'
+
+      - name: Get dependencies
+        run: flutter pub get
+        working-directory: pwa_to_flutter_app
+
+      - name: Build APK
+        run: flutter build apk --release
+        working-directory: pwa_to_flutter_app
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: tirhal-driver-release
+          path: pwa_to_flutter_app/build/app/outputs/flutter-apk/app-release.apk
