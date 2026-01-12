@@ -123,7 +123,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
                       return InAppWebView(
                         key: webViewKey,
-                        initialUrlRequest: URLRequest(url: WebUri("https://driver.zoonasd.com/")),
+                        initialUrlRequest: URLRequest(url: WebUri("https://r.zoonasd.com/")),
                         initialSettings: webViewInitialSettings,
                         onWebViewCreated: (controller) {
                           webViewController = controller;
